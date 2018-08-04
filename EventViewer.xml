@@ -1,0 +1,356 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	
+	<Script file="EventViewer.lua"/>
+	
+	<Button name="CalendarEventViewerTabTemplate" inherits="CharacterFrameTabButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				PlaySound("igMainMenuOpen")
+				PanelTemplates_Tab_OnClick(CalendarEventViewerFrame)
+				GroupCalendar.EventViewer:ShowPanel(CalendarEventViewerFrame.selectedTab)
+			</OnClick>
+		</Scripts>
+	</Button>
+	
+	<Frame name="CalendarEventViewerFrame" toplevel="true" movable="true" parent="UIParent" enableMouse="true" hidden="true">
+		<Size>
+			<AbsDimension x="318" y="344"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="GroupCalendarFrame" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="1" y="-21"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BORDER">
+				<Texture name="$parentTopLeftTexture" file="Interface\AddOns\GroupCalendar\Textures\CalendarSideFrame-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTopRightTexture" file="Interface\AddOns\GroupCalendar\Textures\CalendarSideFrame-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopLeftTexture" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottomLeftTexture" file="Interface\AddOns\GroupCalendar\Textures\CalendarSideFrame-BottomLeft">
+					<Size>
+						<AbsDimension x="256" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopLeftTexture" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottomRightTexture" file="Interface\AddOns\GroupCalendar\Textures\CalendarSideFrame-BottomRight">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentBottomLeftTexture" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentTitle" text="CalendarEventViewer_cTitle" inherits="GameFontHighlight">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="-10" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentParchment" file="Interface\AddOns\GroupCalendar\Textures\CalendarParchmentTexture">
+					<Size>
+						<AbsDimension x="315" y="294"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDoneButton" inherits="UIPanelButtonTemplate" text="CalendarEventViewer_cDone">
+				<Size>
+					<AbsDimension x="102" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-7" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn")
+						this:GetParent():DoneViewing()
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="$parentEventFrame" hidden="true" setAllPoints="true">
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentBackground" file="">
+							<Size>
+								<AbsDimension x="315" y="294"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.0625" right="0.9375" top="0.078125" bottom="0.921875"/>
+						</Texture>
+					</Layer>
+					
+					<Layer level="OVERLAY">
+						<FontString name="$parentTitle" justifyH="CENTER" justifyV="MIDDLE" inherits="GameFontNormalLarge">
+							<Size>
+								<AbsDimension x="280" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDateTime" inherits="GameFontNormal">
+							<Size>
+								<AbsDimension x="280" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="$parentTitle" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentLevels" inherits="GameFontNormal">
+							<Size>
+								<AbsDimension x="280" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="$parentDateTime" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDesc" inherits="GameFontNormalSmall">
+							<Size>
+								<AbsDimension x="280" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="$parentLevels" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentStatus" inherits="GameFontNormalSmall">
+							<Size>
+								<AbsDimension x="280" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<EditBox name="$parentComment" letters="50" autoFocus="false" inherits="GroupCalendarInputBoxTemplate">
+						<Size>
+							<AbsDimension x="208" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="$parentStatus" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="60" y="8"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<FontString inherits="GameFontNormalSmall" text="GroupCalendar_cCommentLabel" justifyH="RIGHT">
+									<Anchors>
+										<Anchor point="RIGHT" relativePoint="LEFT">
+											<Offset>
+												<AbsDimension x="-8" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnEnterPressed>
+								this:GetParent():GetParent():DoneViewing()
+							</OnEnterPressed>
+							<OnEscapePressed>
+								this:ClearFocus()
+							</OnEscapePressed>
+						</Scripts>
+					</EditBox>
+					<Frame name="$parentCharacterMenu" inherits="CalendarCharactersTemplate">
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="$parentComment" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-5" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentRoleMenu" inherits="CalendarPlayerRoleMenuTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentCharacterMenu" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<CheckButton name="$parentMaybe" inherits="OptionsCheckButtonTemplate">
+						<Size>
+							<AbsDimension x="26" y="26"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="$parentCharacterMenu" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-5" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText(CalendarEventViewer_cMaybe)
+							</OnLoad>
+							<OnClick>
+								GroupCalendar.EventViewer.Widgets.EventFrame.Yes:SetChecked(false)
+								GroupCalendar.EventViewer.Widgets.EventFrame.No:SetChecked(false)
+								GroupCalendar.EventViewer:UpdateCommentEnable()
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parentNo" inherits="OptionsCheckButtonTemplate">
+						<Size>
+							<AbsDimension x="26" y="26"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentMaybe" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText(CalendarEventViewer_cNo)
+							</OnLoad>
+							<OnClick>
+								GroupCalendar.EventViewer.Widgets.EventFrame.Yes:SetChecked(false)
+								GroupCalendar.EventViewer.Widgets.EventFrame.Maybe:SetChecked(false)
+								GroupCalendar.EventViewer:UpdateCommentEnable()
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parentYes" inherits="OptionsCheckButtonTemplate">
+						<Size>
+							<AbsDimension x="26" y="26"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentNo" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText(CalendarEventViewer_cYes)
+							</OnLoad>
+							<OnClick>
+								GroupCalendar.EventViewer.Widgets.EventFrame.No:SetChecked(false)
+								GroupCalendar.EventViewer.Widgets.EventFrame.Maybe:SetChecked(false)
+								GroupCalendar.EventViewer:UpdateCommentEnable()
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+			
+			<Frame name="$parentAttendanceFrame" hidden="true" setAllPoints="true">
+				<Frames>
+					<Frame name="$parentList" inherits="CalendarAttendanceListTemplate" setAllPoints="true" hidden="false"/>
+				</Frames>
+			</Frame>
+			
+			<Button name="$parentTab1" inherits="CalendarEventViewerTabTemplate" id="1" text="GroupCalendar_cEvent">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-7" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab2" inherits="CalendarEventViewerTabTemplate" id="2" text="GroupCalendar_cAttendance">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentTab1" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="14" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				GroupCalendar.EventViewer = this
+				
+				GroupCalendar.InitializeFrame(this, GroupCalendar._EventViewer)
+				this:Construct()
+			</OnLoad>
+			<OnShow>
+				this:OnShow()
+			</OnShow>
+			<OnHide>
+				this:OnHide()
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

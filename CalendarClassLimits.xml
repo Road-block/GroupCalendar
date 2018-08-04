@@ -1,0 +1,919 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	
+	<Script file="CalendarClassLimits.lua"/>
+	
+	<Frame name="CalendarClassLimitItemTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="113" y="20"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground">
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset x="-74" y="2"/></Anchor>
+						<Anchor point="BOTTOMRIGHT"><Offset x="0" y="-3"/></Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString inherits="GameFontNormalSmall" name="$parentLabel" text="className:">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="-7" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormalSmall" name="$parentSeparator" text="GroupCalendar_cLevelRangeSeparator">
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="50" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox name="$parentMin" letters="2" historyLines="0" autoFocus="false" inherits="GroupCalendarInputBoxTemplate">
+				<Size>
+					<AbsDimension x="40" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						CalendarInputBox_OnLoad(1)
+					</OnLoad>
+					<OnTextChanged>
+						this:GetParent():GetParent():MinTotalChanged()
+					</OnTextChanged>
+				</Scripts>
+			</EditBox>
+			<EditBox name="$parentMax" letters="2" historyLines="0" autoFocus="false" inherits="GroupCalendarInputBoxTemplate">
+				<Size>
+					<AbsDimension x="40" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parentMin" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="25" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						CalendarInputBox_OnLoad(1)
+					</OnLoad>
+				</Scripts>
+			</EditBox>
+		</Frames>
+	</Frame>
+	
+	<Frame name="CalendarRoleClassLimitItemTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="25" y="20"/>
+		</Size>
+		<Frames>
+			<EditBox name="$parentMin" letters="2" historyLines="0" autoFocus="false" setAllPoints="true" inherits="GroupCalendarInputBoxTemplate">
+				<Scripts>
+					<OnLoad>
+						CalendarInputBox_OnLoad(2)
+					</OnLoad>
+				</Scripts>
+			</EditBox>
+		</Frames>
+	</Frame>
+	
+	<Frame name="CalendarRoleLimitItemTemplate" hidden="false" virtual="true" inherits="CalendarClassLimitItemTemplate">
+		<Size>
+			<AbsDimension x="113" y="20"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground2">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentBackground" relativePoint="TOPRIGHT"><Offset x="10" y="0"/></Anchor>
+						<Anchor point="BOTTOMRIGHT"><Offset x="380" y="-3"/></Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentPRIEST" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentMax" relativePoint="LEFT"><Offset><AbsDimension x="70" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Priest")</OnLoad></Scripts>
+			</Frame>
+			<Frame name="$parentDRUID" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentPRIEST" relativePoint="LEFT"><Offset><AbsDimension x="40" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Druid")</OnLoad></Scripts>
+			</Frame>
+			<Frame name="$parentPALADIN" hidden="true" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDRUID" relativePoint="LEFT"><Offset><AbsDimension x="40" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Paladin")</OnLoad></Scripts>
+			</Frame>
+			<Frame name="$parentSHAMAN" hidden="true" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDRUID" relativePoint="LEFT"><Offset><AbsDimension x="40" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Shaman")</OnLoad></Scripts>
+			</Frame>
+			<Frame name="$parentWARRIOR" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentSHAMAN" relativePoint="LEFT"><Offset><AbsDimension x="40" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Warrior")</OnLoad></Scripts>
+			</Frame>
+			<Frame name="$parentROGUE" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentWARRIOR" relativePoint="LEFT"><Offset><AbsDimension x="40" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Rogue")</OnLoad></Scripts>
+			</Frame>
+			<Frame name="$parentHUNTER" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentROGUE" relativePoint="LEFT"><Offset><AbsDimension x="40" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Hunter")</OnLoad></Scripts>
+			</Frame>
+			<Frame name="$parentMAGE" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentHUNTER" relativePoint="LEFT"><Offset><AbsDimension x="40" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Mage")</OnLoad></Scripts>
+			</Frame>
+			<Frame name="$parentWARLOCK" inherits="CalendarRoleClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentMAGE" relativePoint="LEFT"><Offset><AbsDimension x="40" y="0"/></Offset></Anchor>
+				</Anchors>
+				<Scripts><OnLoad>CalendarRoleClassLimitItem_SetClassName(this, "Warlock")</OnLoad></Scripts>
+			</Frame>
+		</Frames>
+	</Frame>
+	
+	<Frame name="CalendarClassLimitsTemplate" toplevel="true" enableMouse="true" virtual="true">
+		<Size>
+			<AbsDimension x="640" y="310"/>
+		</Size>
+		<Backdrop bgFile="Interface\Addons\GroupCalendar\Textures\DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="400" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" inherits="GameFontHighlight" text="GroupCalendar_cAutoConfirmationTitle">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentFrameHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDescription" inherits="GameFontNormalSmall" text="GroupCalendar_cClassLimitDescription">
+					<Size>
+						<AbsDimension x="0" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="35" y="-15"/></Offset></Anchor>
+						<Anchor point="TOPRIGHT"><Offset><AbsDimension x="-35" y="-15"/></Offset></Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentPriority">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentDescription" relativePoint="BOTTOMLEFT">
+						<Offset x="110" y="0"/>
+					</Anchor>
+				</Anchors>
+				<Size>
+					<AbsDimension x="350" y="1"/>
+				</Size>
+				<Frames>
+					<Frame name="$parentValue" inherits="CalendarDropDownTemplate">
+						<Size><AbsDimension x="130" y="24"/></Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset x="100" y="10"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Title"):SetText(GroupCalendar_cPriorityLabel)
+								CalendarPriorityDropDown_OnLoad()
+							</OnLoad>
+							<OnShow>
+								CalendarPriorityDropDown_OnLoad()
+							</OnShow>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						this.NormalHeight = 30
+						this.ParentFullHeight = this:GetParent():GetHeight()
+					</OnLoad>
+					<OnHide>
+						this:SetHeight(1)
+						this:GetParent():SetHeight(this.ParentFullHeight - this.NormalHeight)
+					</OnHide>
+					<OnShow>
+						this:SetHeight(this.NormalHeight)
+						this:GetParent():SetHeight(this.ParentFullHeight)
+					</OnShow>
+				</Scripts>
+			</Frame>
+			
+			<Frame name="$parentDruid" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentPriority" relativePoint="BOTTOMLEFT">
+						<Offset x="-46" y="-15"/>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString inherits="GameFontNormalSmall" name="$parentMinLabel" text="GroupCalendar_cMinLabel">
+							<Anchors>
+								<Anchor point="BOTTOM" relativePoint="TOPLEFT">
+									<Offset x="17" y="6"/>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="GroupCalendar_cMaxLabel">
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMinLabel">
+									<Offset x="64" y="0"/>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Druid")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentPriest" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentDruid">
+						<Offset x="200" y="0"/>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString inherits="GameFontNormalSmall" name="$parentMinLabel" text="GroupCalendar_cMinLabel">
+							<Anchors>
+								<Anchor point="BOTTOM" relativePoint="TOPLEFT">
+									<Offset x="17" y="6"/>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="GroupCalendar_cMaxLabel">
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMinLabel">
+									<Offset x="64" y="0"/>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Priest")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentPaladin" hidden="true" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentPriest">
+						<Offset>
+							<AbsDimension x="200" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString inherits="GameFontNormalSmall" name="$parentMinLabel" text="GroupCalendar_cMinLabel">
+							<Anchors>
+								<Anchor point="BOTTOM" relativePoint="TOPLEFT">
+									<Offset x="17" y="6"/>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="GroupCalendar_cMaxLabel">
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMinLabel">
+									<Offset x="64" y="0"/>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Paladin")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentHunter" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentDruid">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Hunter")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentRogue" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentPriest">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Rogue")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentShaman" hidden="true" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentPaladin">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Shaman")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMage" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentHunter">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Mage")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentWarlock" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentRogue">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Warlock")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentWarrior" inherits="CalendarClassLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentShaman">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._ClassLimitsDialog.SetClassName(this, "Warrior")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			
+			<Frame name="$parentMaxPartySize" inherits="CalendarDropDownTemplate">
+				<Size><AbsDimension x="130" y="24"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMage">
+						<Offset>
+							<AbsDimension x="40" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentMinLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cMinPartySizeLabel">
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parentTitle">
+									<Offset>
+										<AbsDimension x="0" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentMin" inherits="GameFontNormalSmall" text="0">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentMinLabel" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="4" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Title"):SetText(GroupCalendar_cMaxPartySizeLabel)
+						CalendarPartySizeDropDown_OnLoad()
+					</OnLoad>
+					<OnShow>
+						CalendarPartySizeDropDown_OnLoad()
+					</OnShow>
+				</Scripts>
+			</Frame>
+			
+			<Button name="$parentCancelButton" inherits="UIPanelButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="80" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn")
+						this:GetParent():Cancel()
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentDoneButton" inherits="UIPanelButtonTemplate" text="OKAY">
+				<Size>
+					<AbsDimension x="80" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentCancelButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-7" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn")
+						this:GetParent():Done()
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				GroupCalendar.InitializeFrame(this, GroupCalendar._ClassLimitsDialog)
+				this:Construct()
+			</OnLoad>
+			<OnShow>
+				GroupCalendar.BeginModalDialog(this)
+				this:OnShow()
+			</OnShow>
+			<OnHide>
+				GroupCalendar.EndModalDialog(this)
+			</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="CalendarRoleLimitsTemplate" toplevel="true" enableMouse="true" virtual="true">
+		<Size>
+			<AbsDimension x="610" y="400"/>
+		</Size>
+		<Backdrop bgFile="Interface\Addons\GroupCalendar\Textures\DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="400" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" inherits="GameFontHighlight" text="GroupCalendar_cRoleConfirmationTitle">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentFrameHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDescription" inherits="GameFontNormalSmall" text="GroupCalendar_cRoleLimitDescription">
+					<Size>
+						<AbsDimension x="0" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="35" y="-15"/></Offset></Anchor>
+						<Anchor point="TOPRIGHT"><Offset><AbsDimension x="-35" y="-15"/></Offset></Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentPriority">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentDescription" relativePoint="BOTTOMLEFT">
+						<Offset x="110" y="0"/>
+					</Anchor>
+				</Anchors>
+				<Size>
+					<AbsDimension x="350" y="1"/>
+				</Size>
+				<Frames>
+					<Frame name="$parentValue" inherits="CalendarDropDownTemplate">
+						<Size x="130" y="24"/>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset x="100" y="10"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Title"):SetText(GroupCalendar_cPriorityLabel)
+								CalendarPriorityDropDown_OnLoad()
+							</OnLoad>
+							<OnShow>
+								CalendarPriorityDropDown_OnLoad()
+							</OnShow>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						this.NormalHeight = 30
+						this.ParentFullHeight = this:GetParent():GetHeight()
+					</OnLoad>
+					<OnHide>
+						this:SetHeight(1)
+						this:GetParent():SetHeight(this.ParentFullHeight - this.NormalHeight)
+					</OnHide>
+					<OnShow>
+						this:SetHeight(this.NormalHeight)
+						this:GetParent():SetHeight(this.ParentFullHeight)
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMH" inherits="CalendarRoleLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentPriority" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-50" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._RoleLimitsDialog.SetRoleName(this, "MH")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentOH" inherits="CalendarRoleLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMH">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._RoleLimitsDialog.SetRoleName(this, "OH")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMT" inherits="CalendarRoleLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentOH">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._RoleLimitsDialog.SetRoleName(this, "MT")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentOT" inherits="CalendarRoleLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMT">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._RoleLimitsDialog.SetRoleName(this, "OT")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMD" inherits="CalendarRoleLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentOT">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._RoleLimitsDialog.SetRoleName(this, "MD")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentRD" inherits="CalendarRoleLimitItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMD">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendar._RoleLimitsDialog.SetRoleName(this, "RD")
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			
+			<Frame name="$parentMaxPartySize" inherits="CalendarDropDownTemplate">
+				<Size><AbsDimension x="130" y="24"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentRD">
+						<Offset>
+							<AbsDimension x="40" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentMinLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cMinPartySizeLabel">
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parentTitle">
+									<Offset>
+										<AbsDimension x="0" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentMin" inherits="GameFontNormalSmall" text="0">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentMinLabel" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="4" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Title"):SetText(GroupCalendar_cMaxPartySizeLabel)
+						CalendarPartySizeDropDown_OnLoad()
+					</OnLoad>
+					<OnShow>
+						CalendarPartySizeDropDown_OnLoad()
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<Frame>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentMinLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cMinLabel">
+							<Size><AbsDimension x="45" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentMaxLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cMaxLabel">
+							<Size><AbsDimension x="45" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHMax" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentPRIESTLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cPriestsClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHPRIESTMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDRUIDLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cDruidsClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHDRUIDMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentPALADINLabel" hidden="true" inherits="GameFontNormalSmall" text="GroupCalendar_cPaladinsClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHPALADINMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentSHAMANLabel" hidden="true" inherits="GameFontNormalSmall" text="GroupCalendar_cShamansClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHSHAMANMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentROGUELabel" inherits="GameFontNormalSmall" text="GroupCalendar_cRoguesClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHROGUEMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentWARRIORLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cWarriorsClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHWARRIORMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentWARLOCKLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cWarlocksClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHWARLOCKMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentMAGELabel" inherits="GameFontNormalSmall" text="GroupCalendar_cMagesClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHMAGEMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentHUNTERLabel" inherits="GameFontNormalSmall" text="GroupCalendar_cHuntersClassName">
+							<Size><AbsDimension x="35" y="20"/></Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentMHHUNTERMin" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Button name="$parentCancelButton" inherits="UIPanelButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="80" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn")
+						this:GetParent():Cancel()
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentDoneButton" inherits="UIPanelButtonTemplate" text="OKAY">
+				<Size>
+					<AbsDimension x="80" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentCancelButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-15" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn")
+						this:GetParent():Done()
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				GroupCalendar.InitializeFrame(this, GroupCalendar._RoleLimitsDialog)
+				this:Construct()
+			</OnLoad>
+			<OnShow>
+				GroupCalendar.BeginModalDialog(this)
+				this:OnShow()
+			</OnShow>
+			<OnHide>
+				GroupCalendar.EndModalDialog(this)
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

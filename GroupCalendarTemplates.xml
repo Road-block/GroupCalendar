@@ -1,0 +1,1465 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	
+	<Frame name="CalendarDropDownMenuTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="40" y="24"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+					<Size>
+						<AbsDimension x="25" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-18" y="19"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.1953125" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+					<Size>
+						<AbsDimension x="25" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentLeft"/>
+						<Anchor point="RIGHT">
+							<Offset><AbsDimension x="17" y="0"/></Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.8046875" right="1" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1"/>
+				</Texture>
+				<FontString name="$parentText" inherits="GameFontHighlightSmall" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="0" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentMiddle">
+							<Offset>
+								<AbsDimension x="-18" y="1"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="LEFT" relativeTo="$parentMiddle">
+							<Offset>
+								<AbsDimension x="0" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTitle" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentMiddle" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="-11" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentButton">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ToggleDropDownMenu()
+						PlaySound("igMainMenuOptionCheckBoxOn")
+					</OnClick>
+				</Scripts>
+				<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT"/>
+					</Anchors>
+				</NormalTexture>
+				<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT"/>
+					</Anchors>
+				</PushedTexture>
+				<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT"/>
+					</Anchors>
+				</DisabledTexture>
+				<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT"/>
+					</Anchors>
+				</HighlightTexture>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>
+				CloseDropDownMenus()
+			</OnHide>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="CalendarDropDownTemplate" inherits="CalendarDropDownMenuTemplate" hidden="false" virtual="true">
+	</Frame>
+
+	<Frame name="CalendarInputFrameTemplate" hidden="false" virtual="true">
+		<Scripts>
+			<OnShow>
+				GroupCalendar.InputFrameSizeChanged(this)
+			</OnShow>
+			<OnSizeChanged>
+				GroupCalendar.InputFrameSizeChanged(this)
+			</OnSizeChanged>
+		</Scripts>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTopLeft" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.046875" top="0" bottom="0.1875"/>
+				</Texture>
+				<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentTopLeft" relativePoint="BOTTOM"/>
+					</Anchors>
+					<TexCoords left="0" right="0.046875" top="0.1875" bottom="0.4375"/>
+				</Texture>
+				<Texture name="$parentBottomLeft" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentLeft" relativePoint="BOTTOM"/>
+					</Anchors>
+					<TexCoords left="0" right="0.046875" top="0.4375" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentTop" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTopLeft" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.046875" right="0.953125" top="0" bottom="0.1875"/>
+				</Texture>
+				<Texture name="$parentCenter" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.046875" right="0.953125" top="0.1875" bottom="0.4375"/>
+				</Texture>
+				<Texture name="$parentBottom" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentBottomLeft" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.046875" right="0.953125" top="0.4375" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentTopRight" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTop" relativePoint="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.953125" right="1.0" top="0" bottom="0.1875"/>
+				</Texture>
+				<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.953125" right="1.0" top="0.1875" bottom="0.4375"/>
+				</Texture>
+				<Texture name="$parentBottomRight" file="Interface\Common\Common-Input-Border">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.953125" right="1.0" top="0.4375" bottom="0.625"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="CalendarScrollbarTrenchTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="27" y="261"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentTop" file="Interface\Addons\GroupCalendar\Textures\CalendarScrollbarTrench">
+					<Size>
+						<AbsDimension x="27" y="26"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.84375" top="0" bottom="0.1015625"/>
+				</Texture>
+				<Texture name="$parentMiddle" file="Interface\Addons\GroupCalendar\Textures\CalendarScrollbarTrench">
+					<Size>
+						<AbsDimension x="27" y="0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTop" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.84375" top="0.1015625" bottom="0.90234375"/>
+				</Texture>
+				<Texture name="$parentBottom" file="Interface\Addons\GroupCalendar\Textures\CalendarScrollbarTrench">
+					<Size>
+						<AbsDimension x="27" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.84375" top="0.90234375" bottom="1"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnSizeChanged>
+				CalendarScrollbarTrench_SizeChanged(this)
+			</OnSizeChanged>
+		</Scripts>
+	</Frame>
+
+	<Frame name="GroupCalendarSettingsFrameTemplate" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="9" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(0.4, 0.4, 0.4)
+				this:SetBackdropColor(0.15, 0.15, 0.15)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Button name="CalendarPlayerListItemTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="115" y="15"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" text="playerName" inherits="GameFontHighlightSmallOutline">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="5" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CalendarPlayerListItem_OnClick(this, arg1)
+			</OnClick>
+			<OnEnter>
+				local vTextItem = getglobal(this:GetName().."Text")
+				
+				vTextItem:SetTextColor(1.0, 1.0, 1.0)
+			</OnEnter>
+			<OnLeave>
+				local vTextItem = getglobal(this:GetName().."Text")
+				
+				vTextItem:SetTextColor(this.r, this.g, this.b)
+			</OnLeave>
+		</Scripts>
+	</Button>
+	
+	<Frame name="CalendarPlayerListControl" hidden="false" virtual="true" inherits="CalendarInputFrameTemplate">
+		<Size>
+			<AbsDimension x="130" y="66"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentHighlightFrame" hidden="true">
+				<Size>
+					<AbsDimension x="110" y="15"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentTexture" file="Interface\QuestFrame\UI-QuestLogTitleHighlight" alphaMode="ADD"/>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Button name="$parentItem0" inherits="CalendarPlayerListItemTemplate" id="0">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem1" inherits="CalendarPlayerListItemTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem0" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="CalendarPlayerListItemTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem1" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="CalendarPlayerListItemTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem2" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Button>
+			<ScrollFrame name="$parentScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="105" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						gCalendarPlayerList_ActiveList = this:GetParent()
+						
+						FauxScrollFrame_OnVerticalScroll(
+								gCalendarPlayerList_cItemHeight,
+								CalendarPlayerList_ScrollUpdate)
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				CalendarPlayerList_OnLoad()
+			</OnLoad>
+			<OnShow>
+				CalendarPlayerList_OnShow()
+			</OnShow>
+		</Scripts>
+	</Frame>
+	
+	<Button name="CalendarFrameTabTemplate" inherits="CharacterFrameTabButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				PlaySound("igMainMenuOpen")
+				PanelTemplates_Tab_OnClick(GroupCalendarFrame)
+				GroupCalendar:ShowPanel(GroupCalendarFrame.selectedTab)
+			</OnClick>
+		</Scripts>
+	</Button>
+	
+	<Button name="CalendarSmallButtonTemplate" virtual="true">
+		<ButtonText name="$parentText"/>
+		<NormalFont inherits="GameFontNormalSmall"/>
+		<HighlightFont inherits="GameFontHighlightSmall"/>
+		<DisabledFont inherits="GameFontDisableSmall"/>
+		<NormalTexture inherits="UIPanelButtonUpTexture"/>
+		<PushedTexture inherits="UIPanelButtonDownTexture"/>
+		<DisabledTexture inherits="UIPanelButtonDisabledTexture"/>
+		<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+	</Button>
+	
+	<EditBox name="GroupCalendarInputBoxTemplate" inherits="InputBoxTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				CalendarInputBox_OnLoad(0)
+			</OnLoad>
+			<OnTabPressed>
+				CalendarInputBox_TabPressed()
+			</OnTabPressed>
+		</Scripts>
+	</EditBox>
+	
+	<Button name="CalendarAttendanceMenuTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<Scripts>
+			<OnClick>
+				ToggleDropDownMenu(nil, nil, this)
+				PlaySound("igMainMenuOptionCheckBoxOn")
+			</OnClick>
+			<OnHide>
+				CloseDropDownMenus()
+			</OnHide>
+			<OnLoad>
+				CalendarAttendanceDropDown_OnLoad()
+				this.ChangedValueFunc = function (...) GroupCalendar.EventEditor:AttendanceMenuItemSelected(unpack(arg)) end
+			</OnLoad>
+			<OnShow>
+				CalendarAttendanceDropDown_OnLoad()
+			</OnShow>
+		</Scripts>
+		<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+			<Size>
+				<AbsDimension x="20" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+			<Size>
+				<AbsDimension x="20" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+		</PushedTexture>
+		<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+			<Size>
+				<AbsDimension x="20" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+		</DisabledTexture>
+		<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+			<Size>
+				<AbsDimension x="20" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+	
+	<CheckButton name="CalendarAttendanceItemTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="218" y="16"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentCategory" inherits="GameFontNormal" justifyH="LEFT" justifyV="BOTTOM">
+					<Size>
+						<AbsDimension x="190" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="20" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1"/>
+				</FontString>
+				<FontString name="$parentName" inherits="GameFontNormalSmall" justifyH="LEFT" justifyV="BOTTOM">
+					<Size>
+						<AbsDimension x="128" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="20" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentStatus" inherits="GameFontNormalSmall" justifyH="RIGHT" justifyV="BOTTOM">
+					<Size>
+						<AbsDimension x="112"  y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentName" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentAction" inherits="CalendarSmallButtonTemplate" text="GroupCalendar_cClear">
+				<Size>
+					<AbsDimension x="70" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCategory" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn")
+						if this.ActionFunc then
+							this.ActionFunc(this.ActionParam)
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMenu" inherits="CalendarAttendanceMenuTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentStatus" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="2" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<NormalTexture file="Interface\Buttons\UI-MinusButton-Up">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="3" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture file="Interface\Buttons\UI-MinusButton-Down">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="3" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</PushedTexture>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="3" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckedTexture>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="3" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</DisabledCheckedTexture>
+		<HighlightTexture name="$parentHighlight" file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="3" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnClick>
+				this:GetParent():Item_OnClick(this, arg1)
+			</OnClick>
+			<OnEnter>
+				this:GetParent():Item_OnEnter(this)
+			</OnEnter>
+			<OnLeave>
+				this:GetParent():Item_OnLeave(this)
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	
+	<Button name="CalendarExpandAllButton" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<NormalTexture file="Interface\Buttons\UI-MinusButton-UP">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="3" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture name="$parentHighlight" file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="3" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+	
+	<Frame name="CalendarAttendanceListTemplate" virtual="true">
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentTotal" text="" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="25" y="11"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		
+		<Frames>
+			<Button name="$parentExpandAllButton" hidden="false" inherits="CalendarExpandAllButton">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="-42"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						this:GetParent():ToggleExpandAll()
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentExpandAll" inherits="TabButtonTemplate" text="ALL" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="25" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						PanelTemplates_SelectTab(this)
+						PanelTemplates_TabResize(0)
+						getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 31)
+					</OnLoad>
+					<OnClick>
+						this:GetParent():ShowPanel(this:GetParent().Widgets.MainView)
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentGroupTab" inherits="TabButtonTemplate" text="CalendarEventEditor_cGroupTabTitle" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentExpandAll" relativePoint="TOPRIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						PanelTemplates_DeselectTab(this)
+						PanelTemplates_TabResize(0)
+						getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 31)
+					</OnLoad>
+					<OnClick>
+						this:GetParent():ShowPanel(this:GetParent().Widgets.GroupView)
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Frame name="$parentViewMenu" inherits="CalendarDropDownMenuTemplate" hidden="false">
+				<Size>
+					<AbsDimension x="150" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="155" y="-31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						GroupCalendarViewMenu_OnLoad()
+						this.AttendanceList = this:GetParent()
+						this.ChangedValueFunc = function (pMenu, pValue) pMenu.AttendanceList:DoListViewCommand(pValue) end
+					</OnLoad>
+					<OnShow>
+						GroupCalendarViewMenu_OnLoad()
+					</OnShow>
+				</Scripts>
+			</Frame>
+			
+			<Frame name="$parentMainView" setAllPoints="true" hidden="true">
+				<Frames>
+					<Button name="$parentAddButton" inherits="UIPanelButtonTemplate" text="GroupCalendar_cAddPlayerTitle">
+						<Size>
+							<AbsDimension x="90" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-115" y="6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								PlaySound("igMainMenuOptionCheckBoxOn")
+								CalendarAddPlayer_Open()
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Frame name="$parentClassTotals">
+						<Size>
+							<AbsDimension x="315" y="54"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="26"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture setAllPoints="true" file="Interface\Addons\GroupCalendar\Textures\AttendanceSummaryBackground">
+									<TexCoords left="0" right="1" top="0" bottom="0.84375"/>
+								</Texture>
+							</Layer>
+							<Layer level="OVERLAY">
+								<FontString name="$parentDRUIDLabel" text="GroupCalendar_cDruidsLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativePoint="BOTTOMLEFT">
+											<Offset>
+												<AbsDimension x="75" y="47"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentDRUID" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentDRUIDLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentHUNTERLabel" text="GroupCalendar_cHuntersLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentDRUIDLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="100" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentHUNTER" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentHUNTERLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentMAGELabel" text="GroupCalendar_cMagesLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentHUNTERLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="100" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentMAGE" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentMAGELabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentPALADINLabel" hidden="true" text="GroupCalendar_cPaladinsLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentDRUIDLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-15"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentPALADIN" hidden="true" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentPALADINLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentSHAMANLabel" hidden="true" text="GroupCalendar_cShamansLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentDRUIDLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-15"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentSHAMAN" hidden="true" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentSHAMANLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentPRIESTLabel" text="GroupCalendar_cPriestsLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentHUNTERLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-15"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentPRIEST" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentPRIESTLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentROGUELabel" text="GroupCalendar_cRoguesLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentMAGELabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-15"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentROGUE" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentROGUELabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentWARLOCKLabel" text="GroupCalendar_cWarlocksLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentPRIESTLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-15"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentWARLOCK" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentWARLOCKLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentWARRIORLabel" text="GroupCalendar_cWarriorsLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentROGUELabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-15"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentWARRIOR" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentWARRIORLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+
+					<Frame name="$parentRoleTotals">
+						<Size>
+							<AbsDimension x="315" y="54"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="26"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture setAllPoints="true" file="Interface\Addons\GroupCalendar\Textures\AttendanceSummaryBackground">
+									<TexCoords left="0" right="1" top="0" bottom="0.84375"/>
+								</Texture>
+							</Layer>
+							<Layer level="OVERLAY">
+								<FontString name="$parentMHLabel" text="GroupCalendar_cMHPluralLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativePoint="BOTTOMLEFT">
+											<Offset>
+												<AbsDimension x="90" y="42"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentMH" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentMHLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentMTLabel" text="GroupCalendar_cMTPluralLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentMHLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="90" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentMT" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentMTLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentMDLabel" text="GroupCalendar_cMDPluralLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentMTLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="90" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentMD" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentMDLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentOHLabel" text="GroupCalendar_cOHPluralLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentMHLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-20"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentOH" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentOHLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentOTLabel" text="GroupCalendar_cOTPluralLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentMTLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-20"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentOT" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentOTLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentRDLabel" text="GroupCalendar_cRDPluralLabel" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentMDLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-20"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentRD" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentRDLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+					
+					<Frame name="$parentStatusTotals">
+						<Size>
+							<AbsDimension x="315" y="54"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="26"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture setAllPoints="true" file="Interface\Addons\GroupCalendar\Textures\AttendanceSummaryBackground">
+									<TexCoords left="0" right="1" top="0" bottom="0.84375"/>
+								</Texture>
+							</Layer>
+							<Layer level="OVERLAY">
+								<FontString name="$parentYESLabel" text="GroupCalendar_cAttendingCategory" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativePoint="BOTTOMLEFT">
+											<Offset>
+												<AbsDimension x="90" y="42"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentYES" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentYESLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentSTANDBYLabel" text="GroupCalendar_cStandbyCategory" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentYESLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="90" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentSTANDBY" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentSTANDBYLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentNOLabel" text="GroupCalendar_cNotAttendingCategory" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentSTANDBYLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="90" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentNO" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentNOLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentQUEUEDLabel" text="GroupCalendar_cQueuedCategory" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentYESLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-20"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentQUEUED" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentQUEUEDLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentPENDINGLabel" text="CalendarEventEditor_cPending" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentSTANDBYLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-20"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentPENDING" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentPENDINGLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentBANNEDLabel" text="GroupCalendar_cBannedCategory" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentNOLabel" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="-20"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentBANNED" text="0" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="$parentBANNEDLabel" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+					
+					<Frame name="$parentAutoConfirm" hidden="false">
+						<Size>
+							<AbsDimension x="315" y="23"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="$parentRoleTotals" relativePoint="TOPLEFT"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture setAllPoints="true" file="Interface\Addons\GroupCalendar\Textures\AutoConfirmEnableBackground">
+									<TexCoords left="0" right="1" top="0" bottom="0.71875"/>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Frame name="$parentMenu" inherits="CalendarDropDownMenuTemplate">
+								<Size><AbsDimension x="185" y="24"/></Size>
+								<Anchors>
+									<Anchor point="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="25" y="1"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this:SetScale(0.9)
+										CalendarAutoConfirmDropDown_OnLoad()
+									</OnLoad>
+								</Scripts>
+							</Frame>
+							<Button name="$parentOptions" inherits="CalendarSmallButtonTemplate" text="GroupCalendar_cAutoConfirmButtonTitle">
+								<Size>
+									<AbsDimension x="90" y="18"/>
+								</Size>
+								<Anchors>
+									<Anchor point="BOTTOMRIGHT">
+										<Offset>
+											<AbsDimension x="-15" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>
+										PlaySound("igMainMenuOptionCheckBoxOn")
+										this.AttendanceViewer:OpenAutoConfirmOptions()
+									</OnClick>
+								</Scripts>
+							</Button>
+						</Frames>
+					</Frame>
+				</Frames>
+			</Frame>
+			
+			<Frame name="$parentGroupView" hidden="true">
+				<Size>
+					<AbsDimension x="315" y="54"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="26"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture setAllPoints="true" file="Interface\Addons\GroupCalendar\Textures\AttendanceSummaryBackground">
+							<TexCoords left="0" right="1" top="0" bottom="0.84375"/>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="$parentSelectionInfo" inherits="GameFontNormalSmall" justifyH="LEFT" justifyV="MIDDLE">
+							<Size>
+								<AbsDimension x="150" y="21"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="140" y="-7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentStatus" inherits="GameFontNormalSmall" justifyH="LEFT" justifyV="MIDDLE">
+							<Size>
+								<AbsDimension x="150" y="21"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="140" y="-29"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentAutoSelect" inherits="CalendarSmallButtonTemplate" text="GroupCalendar_cAutoSelectButtonTitle">
+						<Size>
+							<AbsDimension x="120" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-7"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								GroupCalendar.Invites:AutoSelectPlayers()
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentInvite" inherits="CalendarSmallButtonTemplate" text="GroupCalendar_cInviteButtonTitle">
+						<Size>
+							<AbsDimension x="120" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentAutoSelect" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								GroupCalendar.Invites:InviteSelectedPlayers()
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+			
+			<Frame name="$parentScrollbarTrench" inherits="CalendarScrollbarTrenchTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-3" y="-58"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			
+			<CheckButton name="$parentItem0" inherits="CalendarAttendanceItemTemplate" id="0">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-63"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem1" inherits="CalendarAttendanceItemTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem0" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem2" inherits="CalendarAttendanceItemTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem1" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem3" inherits="CalendarAttendanceItemTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem2" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem4" inherits="CalendarAttendanceItemTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem3" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem5" inherits="CalendarAttendanceItemTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem4" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem6" inherits="CalendarAttendanceItemTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem5" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem7" inherits="CalendarAttendanceItemTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem6" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem8" inherits="CalendarAttendanceItemTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem7" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem9" inherits="CalendarAttendanceItemTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem8" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem10" inherits="CalendarAttendanceItemTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem9" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem11" inherits="CalendarAttendanceItemTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem10" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem12" inherits="CalendarAttendanceItemTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem11" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem13" inherits="CalendarAttendanceItemTemplate" id="13">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem12" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem14" inherits="CalendarAttendanceItemTemplate" id="14">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem13" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentItem15" inherits="CalendarAttendanceItemTemplate" id="15">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentItem14" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<ScrollFrame name="$parentScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="282" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-63"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(
+								GroupCalendar.cAttendanceItemHeight,
+								GroupCalendar.AttendanceViewer.OnVerticalScroll)
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				GroupCalendar.AttendanceViewer.Initialize(this)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<CheckButton name="CalendarSideListItemTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="280" y="16"/>
+		</Size>
+	</CheckButton>
+</Ui>

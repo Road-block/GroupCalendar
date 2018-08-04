@@ -1,0 +1,41 @@
+## Interface: 11200
+## Title: Group Calendar
+## Version: 4.0.3
+## Notes: In-game calendar for managing group and personal events
+## Title-zhTW: |cFFFF6600團體行事曆 |rGroup Calendar
+## Notes-zhTW: 團隊行事曆
+## Title-zhCN: |cFFFF6600团体行事历 |rGroup Calendar
+## Notes-zhCN: 团体活动行事历
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: gGroupCalendar_Settings, gGroupCalendar_Database
+
+MCDebugLib.lua
+MCDateLib.lua
+MCEventLib.lua
+MCSchedulerLib.lua
+MCDataChannelLib.lua
+
+GroupCalendarStrings.lua
+GroupCalendarStrings_cn.lua
+
+CalendarDisplay.lua
+EventDatabase.lua
+GroupCalendarCoolDowns.lua
+GroupCalendarTime.lua
+GroupCalendarReminders.lua
+CalendarNetwork.lua
+GroupCalendarMD5.lua
+CalendarGroupInvites.lua
+GroupCalendarWhisper.lua
+GroupCalendarBackup.lua
+GroupCalendar.lua
+
+GroupCalendarTemplates.xml
+GroupCalendarMenus.xml
+GroupCalendarAddPlayer.xml
+CalendarClassLimits.xml
+GroupCalendar.xml
+CalendarEditor.xml
+EventEditor.xml
+EventViewer.xml

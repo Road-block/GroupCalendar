@@ -1,0 +1,19 @@
+Version 3.0 (Display and Event Enchancements)
+
+    - Support recurring events (daily, weekly, bi-weekly, monthly, etc)
+    - Show holidays
+	- Toggle to show events created by/for my guild only
+	
+Future features under consideration:
+
+    - Show a count of the number of events remaining on a given day in the calendar view
+    - Remove alts from an event when a different char on the same account is signed up
+	- Show attendance totals by guild
+	- Show attendance list by name without class grouping
+	- Allow events to be moved to another date
+    - Expanded event categories:
+        - Zone Questing
+        - Outdoor bosses: Kazzak, Azuregos, Ysondre, Lethon, Emeriss, Taerar
+        - Special events: Fishing
+        - Dueling
+        - Gurubashi Arena
